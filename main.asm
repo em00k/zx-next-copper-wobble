@@ -110,10 +110,10 @@ cop_upload_loop:
 
         djnz    cop_upload_loop     ; repeat for all copper line s
 
-        nextreg COPPER_DATA_NR_60,$62               ; 01 100010 cc 000iii
-        nextreg COPPER_DATA_NR_60,$40               ; 01 000000 
+        nextreg COPPER_DATA_NR_60,%10000001         ; WAIT MSB 1 
+        nextreg COPPER_DATA_NR_60,255               ; Inifite line 
         nextreg COPPER_CONTROL_LO_NR_61,0
-        nextreg COPPER_CONTROL_HI_NR_62,$80
+        nextreg COPPER_CONTROL_HI_NR_62,%11000000
 
         ld      hl,c_e              ; e = e + 1     increase y delta 
         inc     (hl) 
@@ -152,7 +152,7 @@ c_b:    db 0
 c_l:    db 0 
 c_c:    db 0
 c_d:    db 1 
-c_e:    db 0 
+c_e:    db 16 
 c_j:    db 0 
 
 
